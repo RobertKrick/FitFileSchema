@@ -1,0 +1,129 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "FitFile_Version": {
+      "type": "string",
+      "const": "0.1",
+      "description": "Version of the FitFile format; currently always 0.1"
+    },
+    "workouts": {
+      "type": "array",
+      "description": "Lists all defined workouts in this FitFile",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "Workout_Name": {
+            "type": "string",
+            "description": "Give this Workout a Name"
+          },
+          "Workout_Priority": {
+            "type": "string",
+            "enum": ["Heartrate", "FTP"],
+            "description": "If the workout contains more than one target, priority defines which to hold"
+          },
+          "Workout_Type": {
+            "type": "string",
+            "enum": [
+              "Cycling",
+              "Running",
+              "Swimming",
+              "Golf",
+              "Strength_Training"
+            ],
+            "description": "Choose a Sport"
+          },
+          "workoutCategory": {
+            "type": "string",
+            "enum": [
+              "Recovery",
+              "Base Endurance 1",
+              "Base Endurance 2",
+              "Tempo Runs",
+              "Threshold Training",
+              "VO2max Intervals",
+              "Anaerobic Capacity",
+              "Sprint Intervals",
+              "Muscular Endurance",
+              "Technique and Coordination"
+            ],
+            "description": "Choose the overarching training category or intensity goal"
+          },
+          "Planed_Training_Load": {
+            "type": "integer",
+            "description": "What is the planned training load for this workout"
+          },
+          "Tasks": {
+            "type": "array",
+            "description": "List of all workout steps; any number of entries allowed",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "Step": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "description": "Sequence number in the workout"
+                },
+                "Name": {
+                  "type": "string",
+                  "description": "Short label of the phase/action (e.g. Warm-up)"
+                },
+                "Duration": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "How long is this step in seconds"
+                },
+                "Target_Power": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Fixed target power for this step"
+                },
+                "Target_Power_Zone": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Target power zone for this step"
+                },
+                "Target_Heartrate": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Fixed target heartrate for this step"
+                },
+                "Target_Heartrate_Zone": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Target heartrate zone for this step"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Details on duration, intensity or repetitions"
+                }
+              },
+              "required": ["Step", "Name", "description"],
+              "allOf": [
+                {
+                  "oneOf": [
+                    { "required": ["Target_Power"] },
+                    { "required": ["Target_Power_Zone"] }
+                  ]
+                },
+                {
+                  "oneOf": [
+                    { "required": ["Target_Heartrate"] },
+                    { "required": ["Target_Heartrate_Zone"] }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "required": ["Workout_Name", "Workout_Type", "Tasks"]
+      }
+    }
+  },
+  "required": ["FitFile_Version", "workouts"]
+}
