@@ -98,21 +98,17 @@
                   "minimum": 0,
                   "description": "Target heartrate zone for this step"
                 },
-                "description": {
+                "Description": {
                   "type": "string",
                   "description": "Details on duration, intensity or repetitions"
                 }
               },
-              "required": ["Step", "Name", "description"],
+              "required": ["Step", "Name", "Description"],
               "allOf": [
                 {
                   "oneOf": [
                     { "required": ["Target_Power"] },
-                    { "required": ["Target_Power_Zone"] }
-                  ]
-                },
-                {
-                  "oneOf": [
+                    { "required": ["Target_Power_Zone"] },
                     { "required": ["Target_Heartrate"] },
                     { "required": ["Target_Heartrate_Zone"] }
                   ]
