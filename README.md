@@ -13,6 +13,7 @@ FitFile
    |- Workout_Type              ✅  (enum)
    |- Workout_Category          ✅  (enum)
    |- Planned_Training_Load     ✅  (integer)
+   |- Planned_Start_Date            (integer)           - UNIX Timestamp
    |_ Tasks (Array of Tasks)    ✅
       ├─ Step                   ✅  (integer)           – sequence number
       ├─ Name                   ✅  (string)            – short label

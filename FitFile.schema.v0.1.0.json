@@ -5,7 +5,6 @@
   "description": "Schema for a FitFile containing workout definitions",
   "type": "object",
   "additionalProperties": false,
-
   "$defs": {
     "TextEvent": {
       "type": "object",
@@ -29,7 +28,6 @@
       "required": ["Duration", "Message", "TimeOffset"],
       "additionalProperties": false
     },
-
     "CyclingTrainingZone": {
       "type": "string",
       "description": "FTP-based cycling training zone",
@@ -175,7 +173,7 @@
         {
           "const": "Cycling",
           "title": "Cycling",
-          "description": "Bike workouts, either road or indoor trainer."
+          "description": "Bike workouts, road or indoor trainer."
         },
         {
           "const": "Running",
@@ -246,7 +244,6 @@
       ]
     }
   },
-
   "properties": {
     "FitFile_Version": {
       "type": "string",
@@ -271,10 +268,10 @@
             "description": "If the workout contains more than one target, priority defines which to hold"
           },
           "Workout_Type": {
-            "$ref": "#/refs/Workout_Type"
+            "$ref": "#/$defs/WorkoutType"
           },
           "Workout_Category": {
-            "$ref": "#/$refs/Workout_Category"
+            "$ref": "#/$defs/WorkoutCategory"
           },
           "Planned_Training_Load": {
             "type": "integer",
@@ -295,7 +292,7 @@
                 },
                 "Name": {
                   "type": "string",
-                  "description": "Short label of the phase/action (e.g. Warm-up)"
+                  "description": "Short label of the phase/action"
                 },
                 "SegmentType": {
                   "$ref": "#/$defs/SegmentType"
@@ -308,22 +305,22 @@
                 "Distance": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "distance target for this step"
+                  "description": "Optional distance target in meters (for running or swimming)"
                 },
                 "Target_Power": {
                   "type": "integer",
                   "minimum": 0,
                   "description": "Fixed target power for this step"
                 },
-                "Target_Power_High": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "description": "upper bound of power range"
-                },
                 "Target_Power_Low": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "lower bound of power range"
+                  "description": "Lower bound of power range"
+                },
+                "Target_Power_High": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Upper bound of power range"
                 },
                 "Target_Power_Zone": {
                   "$ref": "#/$defs/CyclingTrainingZone"
@@ -331,29 +328,29 @@
                 "Target_Heartrate": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "Fixed target heartrate for this step"
+                  "description": "Fixed target heart rate for this step"
                 },
                 "Target_Heartrate_Zone": {
                   "$ref": "#/$defs/HeartRateZone"
                 },
+                "Cadence": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Fixed target cadence for this step"
+                },
+                "Cadence_Low": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Lower bound of cadence range"
+                },
+                "Cadence_High": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Upper bound of cadence range"
+                },
                 "Description": {
                   "type": "string",
                   "description": "Details on duration, intensity or repetitions"
-                },
-                "Cadance": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "description": "Fixed target cadance for this step"
-                },
-                "Cadance_Low": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "description": "lower bound of cadance range"
-                },
-                "Cadance_High": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "description": "upper bound of cadance range"
                 },
                 "TextEvents": {
                   "type": "array",
@@ -365,48 +362,40 @@
               "allOf": [
                 {
                   "oneOf": [
-                    {
-                      "required": ["Target_Power"]
-                    },
-                    {
-                      "required": ["Target_Power_Zone"]
-                    },
-                    {
-                      "required": ["Target_Heartrate"]
-                    },
-                    {
-                      "required": ["Target_Heartrate_Zone"]
-                    }
+                    { "required": ["Target_Power"] },
+                    { "required": ["Target_Power_Zone"] },
+                    { "required": ["Target_Heartrate"] },
+                    { "required": ["Target_Heartrate_Zone"] }
                   ]
                 }
               ]
             }
-          },
-          "required": ["Workout_Name", "Workout_Type", "Tasks"],
-          "allOf": [
-            {
-              "if": {
-                "properties": {
-                  "Workout_Type": {
-                    "enum": ["Cycling", "Rowing", "Swimming", "Running"]
-                  }
-                },
-                "required": ["Workout_Type"]
+          }
+        },
+        "required": ["Workout_Name", "Workout_Type", "Tasks"],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "Workout_Type": {
+                  "enum": ["Cycling", "Rowing", "Swimming", "Running"]
+                }
               },
-              "then": {
-                "properties": {
-                  "Tasks": {
-                    "items": {
-                      "required": ["Cadance"]
-                    }
+              "required": ["Workout_Type"]
+            },
+            "then": {
+              "properties": {
+                "Tasks": {
+                  "items": {
+                    "required": ["Cadence"]
                   }
                 }
               }
             }
-          ]
-        }
+          }
+        ]
       }
-    },
-    "required": ["FitFile_Version", "Workouts"]
-  }
+    }
+  },
+  "required": ["FitFile_Version", "Workouts"]
 }
