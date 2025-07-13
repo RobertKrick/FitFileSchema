@@ -8,7 +8,7 @@
       "const": "0.1",
       "description": "Version of the FitFile format; currently always 0.1"
     },
-    "workouts": {
+    "Workouts": {
       "type": "array",
       "description": "Lists all defined workouts in this FitFile",
       "minItems": 1,
@@ -36,7 +36,7 @@
             ],
             "description": "Choose a Sport"
           },
-          "workoutCategory": {
+          "Workout_Category": {
             "type": "string",
             "enum": [
               "Recovery",
