@@ -3,9 +3,250 @@
   "id": "FitFile.schema.v0.1.0.json",
   "title": "FitFile Schema",
   "description": "Schema for a FitFile containing workout definitions",
-
   "type": "object",
   "additionalProperties": false,
+
+  "$defs": {
+    "TextEvent": {
+      "type": "object",
+      "description": "In-workout message overlay at a given time offset",
+      "properties": {
+        "Duration": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds the text stays visible"
+        },
+        "Message": {
+          "type": "string",
+          "description": "The text to display"
+        },
+        "TimeOffset": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Seconds from segment start when the text appears"
+        }
+      },
+      "required": ["Duration", "Message", "TimeOffset"],
+      "additionalProperties": false
+    },
+
+    "CyclingTrainingZone": {
+      "type": "string",
+      "description": "FTP-based cycling training zone",
+      "oneOf": [
+        {
+          "const": "Active Recovery",
+          "title": "Zone 1",
+          "description": "Very easy pedaling for active recovery rides."
+        },
+        {
+          "const": "Endurance",
+          "title": "Zone 2",
+          "description": "Steady pace for long endurance efforts."
+        },
+        {
+          "const": "Tempo",
+          "title": "Zone 3",
+          "description": "Moderate intensity just below threshold."
+        },
+        {
+          "const": "Threshold",
+          "title": "Zone 4",
+          "description": "Sustained efforts at lactate threshold."
+        },
+        {
+          "const": "VO2 Max",
+          "title": "Zone 5",
+          "description": "High-intensity intervals targeting VO₂ max."
+        },
+        {
+          "const": "Anaerobic Capacity",
+          "title": "Zone 6",
+          "description": "Short, all-out efforts to build anaerobic capacity."
+        },
+        {
+          "const": "Neuromuscular Power",
+          "title": "Zone 7",
+          "description": "Maximal sprint efforts for neuromuscular power."
+        }
+      ]
+    },
+    "HeartRateZone": {
+      "type": "string",
+      "description": "Heart-rate based training zone",
+      "oneOf": [
+        {
+          "const": "Very Light / Active Recovery",
+          "title": "Zone 1",
+          "description": "50–60% HRmax"
+        },
+        {
+          "const": "Light / Endurance",
+          "title": "Zone 2",
+          "description": "60–70% HRmax"
+        },
+        {
+          "const": "Moderate / Tempo",
+          "title": "Zone 3",
+          "description": "70–80% HRmax"
+        },
+        {
+          "const": "Hard / Threshold",
+          "title": "Zone 4",
+          "description": "80–90% HRmax"
+        },
+        {
+          "const": "Very Hard / VO2max",
+          "title": "Zone 5",
+          "description": "90–95% HRmax"
+        },
+        {
+          "const": "Maximum / Anaerobic Capacity",
+          "title": "Zone 6",
+          "description": "95–100% HRmax"
+        },
+        {
+          "const": "Neuromuscular Power",
+          "title": "Zone 7",
+          "description": ">100% HRmax"
+        }
+      ]
+    },
+    "WorkoutCategory": {
+      "type": "string",
+      "description": "Overarching training category or intensity goal",
+      "oneOf": [
+        {
+          "const": "Recovery",
+          "title": "Recovery",
+          "description": "Very easy effort for active recovery rides or runs."
+        },
+        {
+          "const": "Base Endurance 1",
+          "title": "Base Endurance 1",
+          "description": "Steady, low-intensity endurance work."
+        },
+        {
+          "const": "Base Endurance 2",
+          "title": "Base Endurance 2",
+          "description": "Moderate endurance to build aerobic capacity."
+        },
+        {
+          "const": "Tempo Runs",
+          "title": "Tempo Runs",
+          "description": "Sustained efforts slightly below threshold."
+        },
+        {
+          "const": "Threshold Training",
+          "title": "Threshold Training",
+          "description": "Efforts at or near lactate threshold."
+        },
+        {
+          "const": "VO2max Intervals",
+          "title": "VO2max Intervals",
+          "description": "High-intensity intervals to raise VO₂ max."
+        },
+        {
+          "const": "Anaerobic Capacity",
+          "title": "Anaerobic Capacity",
+          "description": "Short, very hard efforts to boost anaerobic power."
+        },
+        {
+          "const": "Sprint Intervals",
+          "title": "Sprint Intervals",
+          "description": "All-out sprint efforts with full recovery."
+        },
+        {
+          "const": "Muscular Endurance",
+          "title": "Muscular Endurance",
+          "description": "Sustained high force at low cadence or pace."
+        },
+        {
+          "const": "Technique and Coordination",
+          "title": "Technique and Coordination",
+          "description": "Skill-focused drills for form and efficiency."
+        }
+      ]
+    },
+    "WorkoutType": {
+      "type": "string",
+      "description": "Type of sport for this workout",
+      "oneOf": [
+        {
+          "const": "Cycling",
+          "title": "Cycling",
+          "description": "Bike workouts, either road or indoor trainer."
+        },
+        {
+          "const": "Running",
+          "title": "Running",
+          "description": "Outdoor or treadmill running sessions."
+        },
+        {
+          "const": "Swimming",
+          "title": "Swimming",
+          "description": "Pool or open-water swim workouts."
+        },
+        {
+          "const": "Golf",
+          "title": "Golf",
+          "description": "Fitness and mobility routines for golf."
+        },
+        {
+          "const": "Strength_Training",
+          "title": "Strength Training",
+          "description": "Gym-based resistance and weightlifting sessions."
+        },
+        {
+          "const": "Rowing",
+          "title": "Rowing",
+          "description": "On-water or ergometer rowing workouts."
+        }
+      ]
+    },
+    "SegmentType": {
+      "type": "string",
+      "description": "Type of workout segment",
+      "oneOf": [
+        {
+          "const": "Warmup",
+          "title": "Warmup",
+          "description": "Easy effort to prepare the body for work."
+        },
+        {
+          "const": "Interval",
+          "title": "Interval",
+          "description": "Repeated high/low intensity efforts."
+        },
+        {
+          "const": "Ramp",
+          "title": "Ramp",
+          "description": "Gradual increase or decrease in intensity."
+        },
+        {
+          "const": "SteadyState",
+          "title": "SteadyState",
+          "description": "Sustained, constant-intensity effort."
+        },
+        {
+          "const": "Cooldown",
+          "title": "Cooldown",
+          "description": "Easy effort to flush out metabolites."
+        },
+        {
+          "const": "Rest",
+          "title": "Rest",
+          "description": "Passive recovery; no pedaling or minimal effort."
+        },
+        {
+          "const": "FreeRide",
+          "title": "FreeRide",
+          "description": "Unstructured riding with no specific target."
+        }
+      ]
+    }
+  },
+
   "properties": {
     "FitFile_Version": {
       "type": "string",
@@ -30,34 +271,12 @@
             "description": "If the workout contains more than one target, priority defines which to hold"
           },
           "Workout_Type": {
-            "type": "string",
-            "enum": [
-              "Cycling",
-              "Running",
-              "Swimming",
-              "Golf",
-              "Strength_Training",
-              "Rowing"
-            ],
-            "description": "Choose a Sport"
+            "$ref": "#/refs/Workout_Type"
           },
           "Workout_Category": {
-            "type": "string",
-            "enum": [
-              "Recovery",
-              "Base Endurance 1",
-              "Base Endurance 2",
-              "Tempo Runs",
-              "Threshold Training",
-              "VO2max Intervals",
-              "Anaerobic Capacity",
-              "Sprint Intervals",
-              "Muscular Endurance",
-              "Technique and Coordination"
-            ],
-            "description": "Choose the overarching training category or intensity goal"
+            "$ref": "#/$refs/Workout_Category"
           },
-          "Planed_Training_Load": {
+          "Planned_Training_Load": {
             "type": "integer",
             "description": "What is the planned training load for this workout"
           },
@@ -78,20 +297,36 @@
                   "type": "string",
                   "description": "Short label of the phase/action (e.g. Warm-up)"
                 },
+                "SegmentType": {
+                  "$ref": "#/$defs/SegmentType"
+                },
                 "Duration": {
                   "type": "integer",
                   "minimum": 0,
                   "description": "How long is this step in seconds"
+                },
+                "Distance": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "distance target for this step"
                 },
                 "Target_Power": {
                   "type": "integer",
                   "minimum": 0,
                   "description": "Fixed target power for this step"
                 },
-                "Target_Power_Zone": {
+                "Target_Power_High": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "Target power zone for this step"
+                  "description": "upper bound of power range"
+                },
+                "Target_Power_Low": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "lower bound of power range"
+                },
+                "Target_Power_Zone": {
+                  "$ref": "#/$defs/CyclingTrainingZone"
                 },
                 "Target_Heartrate": {
                   "type": "integer",
@@ -99,28 +334,49 @@
                   "description": "Fixed target heartrate for this step"
                 },
                 "Target_Heartrate_Zone": {
-                  "type": "integer",
-                  "minimum": 0,
-                  "description": "Target heartrate zone for this step"
+                  "$ref": "#/$defs/HeartRateZone"
                 },
                 "Description": {
                   "type": "string",
                   "description": "Details on duration, intensity or repetitions"
                 },
-                "Cardance": {
+                "Cadance": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "Fixed target cardance for this step"
+                  "description": "Fixed target cadance for this step"
+                },
+                "Cadance_Low": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "lower bound of cadance range"
+                },
+                "Cadance_High": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "upper bound of cadance range"
+                },
+                "TextEvents": {
+                  "type": "array",
+                  "description": "List of in-workout messages",
+                  "items": { "$ref": "#/$defs/TextEvent" }
                 }
               },
               "required": ["Step", "Name", "Description"],
               "allOf": [
                 {
                   "oneOf": [
-                    { "required": ["Target_Power"] },
-                    { "required": ["Target_Power_Zone"] },
-                    { "required": ["Target_Heartrate"] },
-                    { "required": ["Target_Heartrate_Zone"] }
+                    {
+                      "required": ["Target_Power"]
+                    },
+                    {
+                      "required": ["Target_Power_Zone"]
+                    },
+                    {
+                      "required": ["Target_Heartrate"]
+                    },
+                    {
+                      "required": ["Target_Heartrate_Zone"]
+                    }
                   ]
                 }
               ]
@@ -141,7 +397,7 @@
                 "properties": {
                   "Tasks": {
                     "items": {
-                      "required": ["Cardance"]
+                      "required": ["Cadance"]
                     }
                   }
                 }
