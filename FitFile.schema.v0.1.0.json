@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
   "id": "FitFile.schema.v0.1.0.json",
   "title": "FitFile Schema",
   "description": "Schema for a FitFile containing workout definitions",
@@ -123,7 +123,12 @@
                     { "required": ["Target_Heartrate_Zone"] }
                   ]
                 }
-              ],
+              ]
+            }
+          },
+          "required": ["Workout_Name", "Workout_Type", "Tasks"],
+          "allOf": [
+            {
               "if": {
                 "properties": {
                   "Workout_Type": {
@@ -134,20 +139,18 @@
               },
               "then": {
                 "properties": {
-                  "Cardance": { "type": "integer", "minimum": 0 }
-                }
-              },
-              "else": {
-                "not": {
-                  "required": ["Cardance"]
+                  "Tasks": {
+                    "items": {
+                      "required": ["Cardance"]
+                    }
+                  }
                 }
               }
             }
-          }
-        },
-        "required": ["Workout_Name", "Workout_Type", "Tasks"]
+          ]
+        }
       }
-    }
-  },
-  "required": ["FitFile_Version", "Workouts"]
+    },
+    "required": ["FitFile_Version", "Workouts"]
+  }
 }
