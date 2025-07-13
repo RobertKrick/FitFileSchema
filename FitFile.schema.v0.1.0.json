@@ -121,5 +121,5 @@
       }
     }
   },
-  "required": ["FitFile_Version", "workouts"]
+  "required": ["FitFile_Version", "Workouts"]
 }
