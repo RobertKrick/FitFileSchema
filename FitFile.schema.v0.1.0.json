@@ -28,7 +28,7 @@
       "required": ["Duration", "Message", "TimeOffset"],
       "additionalProperties": false
     },
-    "CyclingTrainingZone": {
+    "Target_Power_Zone": {
       "type": "string",
       "description": "FTP-based cycling training zone",
       "oneOf": [
@@ -323,7 +323,7 @@
                   "description": "Upper bound of power range"
                 },
                 "Target_Power_Zone": {
-                  "$ref": "#/$defs/CyclingTrainingZone"
+                  "$ref": "#/$defs/Target_Power_Zone"
                 },
                 "Target_Heartrate": {
                   "type": "integer",
