@@ -5,6 +5,7 @@
   "description": "Schema for a FitFile containing workout definitions",
   "type": "object",
   "additionalProperties": false,
+
   "$defs": {
     "TextEvent": {
       "type": "object",
@@ -385,9 +386,14 @@
             },
             "then": {
               "properties": {
+                "Tasks": {}
+              }
+            },
+            "else": {
+              "properties": {
                 "Tasks": {
                   "items": {
-                    "required": ["Cadence"]
+                    "not": { "required": ["Cadence"] }
                   }
                 }
               }
