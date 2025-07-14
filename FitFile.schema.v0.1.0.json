@@ -303,11 +303,13 @@
           },
           "Threshold": {
             "type": "number",
-            "description": "What is the maximum threshold the athlet can hold for one hour"
+            "minimum": 1,
+            "description": "What is the Threshold Power of the Athlete in Watt"
           },
           "Max_Heart_Rate": {
             "type": "integer",
-            "description": "What is the maximum Heartrate the Athlete can have"
+            "description": "What is the maximum Heartrate the Athlete can have",
+            "minimum": 1
           },
           "Tasks": {
             "type": "array",
