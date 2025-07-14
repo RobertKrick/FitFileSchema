@@ -287,6 +287,14 @@
             "type": "integer",
             "description": "What is the planned training load for this workout"
           },
+          "Threshold": {
+            "type": "number",
+            "description": "What is the maximum threshold the athlet can hold for one hour"
+          },
+          "Max_Heart_Rate": {
+            "type": "integer",
+            "description": "What is the maximum Heartrate the Athlete can have"
+          },
           "Tasks": {
             "type": "array",
             "description": "List of all workout steps; any number of entries allowed",
@@ -317,6 +325,11 @@
                   "minimum": 0,
                   "description": "Optional distance target in meters (for running or swimming)"
                 },
+                "Target_Power_Percent": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "The percentage as 0.25 the Power of the step from Threshold"
+                },
                 "Target_Power": {
                   "type": "integer",
                   "minimum": 0,
@@ -334,6 +347,11 @@
                 },
                 "Target_Power_Zone": {
                   "$ref": "#/$defs/Target_Power_Zone"
+                },
+                "Target_Heartrate_Percent": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "The Heartrate for this step in the workout in 0.25 from Max_Heart_Rate "
                 },
                 "Target_Heartrate": {
                   "type": "integer",
@@ -377,8 +395,10 @@
               "allOf": [
                 {
                   "oneOf": [
+                    { "required": ["Target_Power_Percent"] },
                     { "required": ["Target_Power"] },
                     { "required": ["Target_Power_Zone"] },
+                    { "required": ["Target_Heartrate_Percent"] },
                     { "required": ["Target_Heartrate"] },
                     { "required": ["Target_Heartrate_Zone"] }
                   ]

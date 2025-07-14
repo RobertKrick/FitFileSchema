@@ -7,23 +7,29 @@ High-Level Structure of the FitFile Schema
 ```text
 FitFile
 |- FitFile Version
-|_ Workouts (Array of Workout)
+|- Author                       ✅  (string)
+|- Description                  ✅  (string)
+|_ Workouts (Array of Workout)  ✅
    |- Workout_Name              ✅  (string)
    |- Workout_Priority          ✅  (string)
    |- Workout_Type              ✅  (enum)
    |- Workout_Category          ✅  (enum)
    |- Planned_Training_Load     ✅  (integer)
    |- Planned_Start_Date            (integer)           - UNIX Timestamp
+   |- Threshold                 ✅  (number)            - maximum Threshold value for the sport as base for the workout
+   |- Max_Heart_Rate            ✅  (integer)           - the maximum Heartrate
    |_ Tasks (Array of Tasks)    ✅
       ├─ Step                   ✅  (integer)           – sequence number
       ├─ Name                   ✅  (string)            – short label
       ├─ Segment_Type           ✅  (enum)              – segment type: Warmup, Interval, Ramp, SteadyState, Cooldown, Rest, FreeRide
       ├─ Duration               ✅  (integer, sec)      – length of segment
       ├─ Distance               ✅  (integer, Meter)    – optional, for running/swimming/cycling
+      |─ Target_Power_Percent   ✅  (number)            - the percent of the Threshold for that Step
       ├─ Target_Power           ✅  (integer, Watt)     – fixed power target
       ├─ Target_Power_Low       ✅  (integer, Watt)     – lower bound of power range
       ├─ Target_Power_High      ✅  (integer, Watt)     – upper bound of power range
       ├─ Target_Power_Zone      ✅  (integer)           – power zone number
+      |- Target_Power_Percent   ✅  (number), BPM       - Heartrate for this Step in percent from MaxHeartRate
       ├─ Target_Heartrate       ✅  (integer, BPM)      – fixed heart‐rate target
       ├─ Target_Heartrate_Zone  ✅  (integer)           – heart‐rate zone number
       ├─ Cadence                ✅  (integer, RPM)      – fixed cadence target
