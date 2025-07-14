@@ -251,6 +251,15 @@
       "const": "0.1",
       "description": "Version of the FitFile format; currently always 0.1"
     },
+    "Author": {
+      "type": "string",
+      "const": "Robert F. Krick",
+      "description": "Author of the workout"
+    },
+    "Description": {
+      "type": "string",
+      "description": "Description of the Workout"
+    },
     "Workouts": {
       "type": "array",
       "description": "Lists all defined workouts in this FitFile",
