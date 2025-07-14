@@ -295,7 +295,7 @@
                   "type": "string",
                   "description": "Short label of the phase/action"
                 },
-                "SegmentType": {
+                "Segment_Type": {
                   "$ref": "#/$defs/SegmentType"
                 },
                 "Duration": {
@@ -349,6 +349,11 @@
                   "minimum": 0,
                   "description": "Upper bound of cadence range"
                 },
+                "Repeat": {
+                  "type": "Integer",
+                  "minimum": 1,
+                  "description": "Number of times this Step should be repeated"
+                },
                 "Description": {
                   "type": "string",
                   "description": "Details on duration, intensity or repetitions"
@@ -359,7 +364,7 @@
                   "items": { "$ref": "#/$defs/TextEvent" }
                 }
               },
-              "required": ["Step", "Name", "Description"],
+              "required": ["Step", "Name", "Description", "Segment_Type"],
               "allOf": [
                 {
                   "oneOf": [

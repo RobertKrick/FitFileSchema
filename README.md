@@ -29,7 +29,7 @@ FitFile
       ├─ Cadence                ✅  (integer, RPM)      – fixed cadence target
       ├─ Cadence_Low            ✅  (integer, RPM)      – lower cadence bound
       ├─ Cadence_High           ✅  (integer, RPM)      – upper cadence bound
-      ├─ Repeat                (integer)                – number of intervals
+      ├─ Repeat                 ✅  (integer)                – number of intervals
       ├─ OnDuration            (integer, sec)           – “on” phase duration for intervals
       ├─ OffDuration           (integer, sec)           – “off” phase duration
       ├─ OnPower               (integer, Watt)          – target power during “on” phase
