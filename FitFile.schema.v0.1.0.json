@@ -36,37 +36,44 @@
         {
           "const": "Active Recovery",
           "title": "Zone 1",
-          "description": "Very easy pedaling for active recovery rides."
+          "description": "Very easy pedaling for active recovery rides.",
+          "percentage": 0.55
         },
         {
           "const": "Endurance",
           "title": "Zone 2",
-          "description": "Steady pace for long endurance efforts."
+          "description": "Steady pace for long endurance efforts.",
+          "percentage": 0.75
         },
         {
           "const": "Tempo",
           "title": "Zone 3",
-          "description": "Moderate intensity just below threshold."
+          "description": "Moderate intensity just below threshold.",
+          "percentage": 0.88
         },
         {
           "const": "Threshold",
           "title": "Zone 4",
-          "description": "Sustained efforts at lactate threshold."
+          "description": "Sustained efforts at lactate threshold.",
+          "percentage": 1.0
         },
         {
           "const": "VO2 Max",
           "title": "Zone 5",
-          "description": "High-intensity intervals targeting VO₂ max."
+          "description": "High-intensity intervals targeting VO₂ max.",
+          "percentage": 1.1
         },
         {
           "const": "Anaerobic Capacity",
           "title": "Zone 6",
-          "description": "Short, all-out efforts to build anaerobic capacity."
+          "description": "Short, all-out efforts to build anaerobic capacity.",
+          "percentage": 1.25
         },
         {
           "const": "Neuromuscular Power",
           "title": "Zone 7",
-          "description": "Maximal sprint efforts for neuromuscular power."
+          "description": "Maximal sprint efforts for neuromuscular power.",
+          "percentage": 1.5
         }
       ]
     },
@@ -77,37 +84,44 @@
         {
           "const": "Very Light / Active Recovery",
           "title": "Zone 1",
-          "description": "50–60% HRmax"
+          "description": "50–60% HRmax",
+          "percentage": 0.55
         },
         {
           "const": "Light / Endurance",
           "title": "Zone 2",
-          "description": "60–70% HRmax"
+          "description": "60–70% HRmax",
+          "percentage": 0.65
         },
         {
           "const": "Moderate / Tempo",
           "title": "Zone 3",
-          "description": "70–80% HRmax"
+          "description": "70–80% HRmax",
+          "percentage": 0.75
         },
         {
           "const": "Hard / Threshold",
           "title": "Zone 4",
-          "description": "80–90% HRmax"
+          "description": "80–90% HRmax",
+          "percentage": 0.85
         },
         {
           "const": "Very Hard / VO2max",
           "title": "Zone 5",
-          "description": "90–95% HRmax"
+          "description": "90–95% HRmax",
+          "percentage": 0.92
         },
         {
           "const": "Maximum / Anaerobic Capacity",
           "title": "Zone 6",
-          "description": "95–100% HRmax"
+          "description": "95–100% HRmax",
+          "percentage": 0.97
         },
         {
           "const": "Neuromuscular Power",
           "title": "Zone 7",
-          "description": ">100% HRmax"
+          "description": ">100% HRmax",
+          "percentage": 1.0
         }
       ]
     },
