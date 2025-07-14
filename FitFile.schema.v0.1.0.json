@@ -203,7 +203,7 @@
         }
       ]
     },
-    "SegmentType": {
+    "Segment_Type": {
       "type": "string",
       "description": "Type of workout segment",
       "oneOf": [
@@ -296,7 +296,7 @@
                   "description": "Short label of the phase/action"
                 },
                 "Segment_Type": {
-                  "$ref": "#/$defs/SegmentType"
+                  "$ref": "#/$defs/Segment_Type"
                 },
                 "Duration": {
                   "type": "integer",
