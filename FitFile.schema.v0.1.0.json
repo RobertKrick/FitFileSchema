@@ -350,7 +350,7 @@
                   "description": "Upper bound of cadence range"
                 },
                 "Repeat": {
-                  "type": "Integer",
+                  "type": "integer",
                   "minimum": 1,
                   "description": "Number of times this Step should be repeated"
                 },
