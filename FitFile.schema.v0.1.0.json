@@ -372,7 +372,17 @@
                 "Target_Heartrate": {
                   "type": "integer",
                   "minimum": 0,
-                  "description": "Fixed target heart rate for this step"
+                  "description": "Fixed target heart rate for this step in BPM"
+                },
+                "Target_Heartrate_Low": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Lower bound of heart rate range in BPM"
+                },
+                "Target_Heartrate_High": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Upper bound of heart rate range in BPM"
                 },
                 "Target_Heartrate_Zone": {
                   "$ref": "#/$defs/HeartRateZone"
